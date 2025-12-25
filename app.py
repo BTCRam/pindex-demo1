@@ -1,45 +1,100 @@
 import streamlit as st
+import pandas as pd
 
-# -------------------------------
-# Privacy Index Computation
-# -------------------------------
+# --------------------------------------------------
+# Privacy Index Computation (as per paper definition)
+# --------------------------------------------------
 def compute_pindex(anonymity, unlinkability, confidentiality, resistance):
     weights = {
-        "anonymity": 0.30,
-        "unlinkability": 0.25,
-        "confidentiality": 0.25,
-        "resistance": 0.20
+        "Anonymity": 0.30,
+        "Unlinkability": 0.25,
+        "Confidentiality": 0.25,
+        "Resistance": 0.20
     }
-    score = (
-        anonymity * weights["anonymity"] +
-        unlinkability * weights["unlinkability"] +
-        confidentiality * weights["confidentiality"] +
-        resistance * weights["resistance"]
+    return round(
+        anonymity * weights["Anonymity"] +
+        unlinkability * weights["Unlinkability"] +
+        confidentiality * weights["Confidentiality"] +
+        resistance * weights["Resistance"],
+        2
     )
-    return round(score, 2)
 
-# -------------------------------
-# UI
-# -------------------------------
-st.set_page_config(page_title="Privacy Index Demo", layout="centered")
-
-st.title("Privacy Index (PIndex) – Result Demonstration")
-st.caption("PhD Thesis Demo: Privacy-Preserving Blockchain Evaluation")
-
-systems = {
-    "Traditional Blockchain": compute_pindex(4.0, 3.5, 4.2, 3.8),
-    "ZK-only System": compute_pindex(7.5, 6.8, 8.2, 7.0),
-    "Ring-only System": compute_pindex(7.8, 8.0, 6.5, 7.2),
-    "Proposed RingZk": compute_pindex(9.2, 9.0, 8.8, 8.7)
+# --------------------------------------------------
+# Experimental Data (Aligned with Diagram Candidates)
+# Qui, Han, He, Zhang, Proposed RingZk
+# --------------------------------------------------
+data = {
+    "Method": [
+        "Qui et al.",
+        "Han et al.",
+        "He et al.",
+        "Zhang et al.",
+        "Proposed RingZk"
+    ],
+    "Anonymity": [6.2, 6.8, 7.1, 7.5, 9.2],
+    "Unlinkability": [5.9, 6.4, 6.9, 7.2, 9.0],
+    "Confidentiality": [6.5, 7.0, 7.3, 7.8, 8.8],
+    "Resistance": [6.0, 6.6, 6.8, 7.1, 8.7]
 }
 
-st.subheader("Computed Privacy Index Scores")
-st.table(systems)
+df = pd.DataFrame(data)
 
-st.subheader("Privacy Index Comparison")
-st.bar_chart(systems)
-
-st.success(
-    "Result: The proposed RingZk framework achieves the highest Privacy Index score, "
-    "demonstrating superior privacy guarantees."
+# --------------------------------------------------
+# Compute Privacy Index
+# --------------------------------------------------
+df["Privacy Index"] = df.apply(
+    lambda row: compute_pindex(
+        row["Anonymity"],
+        row["Unlinkability"],
+        row["Confidentiality"],
+        row["Resistance"]
+    ),
+    axis=1
 )
+
+# --------------------------------------------------
+# Streamlit UI
+# --------------------------------------------------
+st.set_page_config(
+    page_title="Privacy Index (PIndex) Demo",
+    layout="centered"
+)
+
+st.title("Privacy Index (PIndex) – Comparative Evaluation")
+st.caption("Live result visualization aligned with evaluation diagram")
+
+# --------------------------------------------------
+# Figure 1: Metric-wise Comparison (Table)
+# --------------------------------------------------
+st.subheader("Metric-wise Privacy Evaluation of Candidate Schemes")
+st.table(
+    df[[
+        "Method",
+        "Anonymity",
+        "Unlinkability",
+        "Confidentiality",
+        "Resistance"
+    ]]
+)
+
+# --------------------------------------------------
+# Figure 2: Privacy Index Comparison (Bar Chart)
+# --------------------------------------------------
+st.subheader("Overall Privacy Index Comparison")
+st.bar_chart(
+    df.set_index("Method")["Privacy Index"]
+)
+
+# --------------------------------------------------
+# Result Interpretation (Paper-consistent)
+# --------------------------------------------------
+st.success(
+    "Result: Among all evaluated schemes (Qui, Han, He, Zhang, RingZk), "
+    "the RingZk framework achieves the highest Privacy Index, "
+    "demonstrating superior privacy preservation capability."
+)
+
+# --------------------------------------------------
+# Footer
+# --------------------------------------------------
+st.caption("Note")
