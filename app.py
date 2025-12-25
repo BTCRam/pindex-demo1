@@ -81,7 +81,7 @@ st.set_page_config(
 )
 
 st.title("Comparative Analysis of Privacy-Preserving Blockchain Frameworks")
-st.caption("Live experimental result visualization aligned with Fig. 4 of the research paper")
+st.caption("Live experimental result visualization")
 
 # --------------------------------------------------
 # Experimental Context (LEGITIMACY SECTION)
@@ -131,5 +131,6 @@ st.caption(
     "Note: Experimental values correspond to controlled smart contract executions "
     "performed on a private blockchain test environment."
 )
+
 
 
