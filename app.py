@@ -2,7 +2,7 @@ import streamlit as st
 import pandas as pd
 import altair as alt
 
-st.set_page_config(page_title="RingZk Performance Evaluation", layout="wide")
+st.set_page_config(page_title="RingZk Performance Evaluation", layout="centered")
 st.title("Performance Evaluation of RingZk vs zk-SNARK vs zk-STARK")
 
 # ---------------------------------------------------
@@ -11,7 +11,7 @@ st.title("Performance Evaluation of RingZk vs zk-SNARK vs zk-STARK")
 transactions = [1, 3, 6, 10, 20, 30, 40, 50]
 
 # ---------------------------------------------------
-# Helper Function – Segregated Bar Chart (FIXED)
+# Helper Function – Segregated Bar Chart (FINAL FIX)
 # ---------------------------------------------------
 def segregated_bar_chart(df, value_col, title, y_label):
     melted = df.melt(
@@ -25,10 +25,10 @@ def segregated_bar_chart(df, value_col, title, y_label):
         y=alt.Y(f"{value_col}:Q", title=y_label),
         column=alt.Column(
             "Framework:N",
-            header=alt.Header(title=None)
+            header=alt.Header(labelOrient="bottom")
         )
     ).properties(
-        width=70,
+        width=120,   # IMPORTANT: facet width
         height=300,
         title=title
     ).resolve_scale(
@@ -47,11 +47,13 @@ tat_data = pd.DataFrame({
     "zk-STARK": [15, 30, 40, 70, 390, 290, 120, 45]
 })
 
-tat_chart = segregated_bar_chart(
-    tat_data,
-    "Turnaround Time (ms)",
-    "Transaction Turnaround Time Comparison",
-    "Time (ms)"
+st.altair_chart(
+    segregated_bar_chart(
+        tat_data,
+        "Turnaround Time (ms)",
+        "Transaction Turnaround Time Comparison",
+        "Time (ms)"
+    )
 )
 
 # ---------------------------------------------------
@@ -64,11 +66,13 @@ memory_data = pd.DataFrame({
     "zk-STARK": [10, 19, 21, 23, 24, 21, 30, 31]
 })
 
-memory_chart = segregated_bar_chart(
-    memory_data,
-    "Memory (MB)",
-    "Memory Consumption Comparison",
-    "Memory (MB)"
+st.altair_chart(
+    segregated_bar_chart(
+        memory_data,
+        "Memory (MB)",
+        "Memory Consumption Comparison",
+        "Memory (MB)"
+    )
 )
 
 # ---------------------------------------------------
@@ -81,11 +85,13 @@ throughput_data = pd.DataFrame({
     "zk-STARK": [440, 360, 320, 200, 240, 170, 150, 70]
 })
 
-throughput_chart = segregated_bar_chart(
-    throughput_data,
-    "Throughput (tx/sec)",
-    "Throughput Comparison",
-    "Transactions per Second"
+st.altair_chart(
+    segregated_bar_chart(
+        throughput_data,
+        "Throughput (tx/sec)",
+        "Throughput Comparison",
+        "Transactions per Second"
+    )
 )
 
 # ---------------------------------------------------
@@ -98,36 +104,27 @@ anon_time_data = pd.DataFrame({
     "zk-STARK": [60, 120, 550, 1700, 2000, 1700, 2800, 3700]
 })
 
-anon_chart = segregated_bar_chart(
-    anon_time_data,
-    "Anonymity Time (ms)",
-    "Time Taken for Anonymity Transaction",
-    "Time (ms)"
+st.altair_chart(
+    segregated_bar_chart(
+        anon_time_data,
+        "Anonymity Time (ms)",
+        "Time Taken for Anonymity Transaction",
+        "Time (ms)"
+    )
 )
-
-# ---------------------------------------------------
-# Layout (2 × 2 Grid)
-# ---------------------------------------------------
-col1, col2 = st.columns(2)
-col1.altair_chart(tat_chart, use_container_width=True)
-col2.altair_chart(memory_chart, use_container_width=True)
-
-col3, col4 = st.columns(2)
-col3.altair_chart(throughput_chart, use_container_width=True)
-col4.altair_chart(anon_chart, use_container_width=True)
 
 # ---------------------------------------------------
 # Interpretation
 # ---------------------------------------------------
 st.success(
     "Summary:\n"
-    "• RingZk demonstrates stable and scalable performance.\n"
-    "• zk-SNARK and zk-STARK show increased overhead at higher transaction loads.\n"
-    "• Throughput degradation is evident for zk-based schemes.\n"
-    "• RingZk maintains efficiency while preserving anonymity."
+    "• RingZk demonstrates stable performance across all transaction scales.\n"
+    "• zk-SNARK and zk-STARK incur higher computation and anonymity overhead.\n"
+    "• Throughput degradation is evident in zk-based schemes.\n"
+    "• RingZk achieves efficient privacy preservation with lower cost."
 )
 
 st.caption(
-    "Note: Experimental values are aligned with comparative performance "
+    "Note: Experimental values are aligned with the comparative performance "
     "evaluation of RingZk, zk-SNARK, and zk-STARK."
 )
