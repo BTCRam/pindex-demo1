@@ -81,7 +81,7 @@ st.set_page_config(
 )
 
 st.title("Comparative Analysis of Privacy-Preserving Blockchain Frameworks")
-st.caption("Live experimental result visualization ")
+st.caption("LIVE EXPERIMENT RESULT VISUALIZATION FROM GITHUB STREAMED TO STREAMLIT CLOUD")
 
 # Privacy Index
 st.subheader("Privacy Index Comparison")
@@ -107,3 +107,4 @@ st.success(
 )
 
 st.caption("Note: Experimental values correspond to the comparative analysis diagram in the paper.")
+
