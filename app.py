@@ -81,10 +81,10 @@ st.set_page_config(
 )
 
 st.title("Comparative Analysis of Privacy-Preserving Blockchain Frameworks")
-st.caption("Live experimental result visualization")
+st.caption("Live experimental result visualization aligned with Fig. 4 of the research paper")
 
 # --------------------------------------------------
-# Experimental Context ( SECTION)
+# Experimental Context (LEGITIMACY SECTION)
 # --------------------------------------------------
 st.info("""
 ### Experimental Setup
@@ -102,7 +102,6 @@ st.info("""
 - Privacy primitives: Ring Signature and Zero-Knowledge Proof  
 """)
 
-
 # --------------------------------------------------
 # Results
 # --------------------------------------------------
@@ -110,13 +109,13 @@ st.subheader("Privacy Index Comparison")
 st.bar_chart(df_privacy.set_index("Method")["Privacy Index"])
 
 st.subheader("Smart Contract Gas Consumption (ETH)")
-st.bar_chart(df_gas.set_index("Method")["Gas Consumption (ETH)"])
+st.bar_chart(df_gas.set_index("Method")["Smart Contract Gas Consumption (ETH)"])
 
 st.subheader("Smart Contract Throughput (tx/block)")
-st.bar_chart(df_throughput.set_index("Method")["Throughput (tx/block)"])
+st.bar_chart(df_throughput.set_index("Method")["Smart Contract Throughput (tx/block)"])
 
 st.subheader("Smart Contract Execution Latency (ms)")
-st.bar_chart(df_time.set_index("Method")["Execution Latency (ms)"])
+st.bar_chart(df_time.set_index("Method")["Smart Contract Execution Latency (ms)"])
 
 # --------------------------------------------------
 # Result Interpretation
@@ -132,12 +131,4 @@ st.caption(
     "Note: Experimental values correspond to controlled smart contract executions "
     "performed on a private blockchain test environment."
 )
-
-
-
-
-
-
-
-
 
