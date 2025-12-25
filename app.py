@@ -86,18 +86,21 @@ st.caption("Live experimental result visualization aligned with Fig. 4 of the re
 # --------------------------------------------------
 # Experimental Context (LEGITIMACY SECTION)
 # --------------------------------------------------
-with st.expander("Experimental Setup & Transaction Model"):
-    st.markdown("""
-    **Experimental Setup**
-    - Ethereum-compatible private blockchain test network  
-    - Smart contracts implemented using Solidity  
-    - Batch execution of privacy-preserving transactions  
+st.info("""
+### Experimental Setup
+- Ethereum-compatible private blockchain test network  
+- Smart contracts implemented using Solidity  
+- Batch execution of privacy-preserving transactions  
+- Metrics collected at the smart contract execution layer  
+""")
 
-    **Transaction Model**
-    - Privacy-preserving smart contract invocation  
-    - Payload size: 256–512 bytes  
-    - Ring Signature + Zero-Knowledge Proof  
-    """)
+st.info("""
+### Transaction Model
+- Transaction type: Privacy-preserving smart contract invocation  
+- Payload size: 256–512 bytes  
+- Execution mode: On-chain verification  
+- Privacy primitives: Ring Signature and Zero-Knowledge Proof  
+""")
 
 # --------------------------------------------------
 # Results
@@ -128,4 +131,5 @@ st.caption(
     "Note: Experimental values correspond to controlled smart contract executions "
     "performed on a private blockchain test environment."
 )
+
 
