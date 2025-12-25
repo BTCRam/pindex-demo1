@@ -106,5 +106,6 @@ st.success(
     "compared to existing schemes."
 )
 
-st.caption("Note: Experimental values correspond to the comparative analysis diagram in the paper.")
+st.caption("Note: Experimental values correspond to the comparative analysis from each transaction input.")
+
 
