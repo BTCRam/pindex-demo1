@@ -99,7 +99,7 @@ st.altair_chart(
 # ---------------------------------------------------
 anon_time_data = pd.DataFrame({
     "Transactions": transactions,
-    "RingZk": [30, 45, 60, 120, 100, 100, 120, 140],
+    "RingZk": [30, 125, 100, 220, 1500, 1000, 1200, 1400],
     "zk-SNARK": [50, 100, 150, 1000, 2500, 2000, 2800, 3300],
     "zk-STARK": [60, 120, 550, 1700, 2000, 1700, 2800, 3700]
 })
@@ -128,4 +128,5 @@ st.caption(
     "Note: Experimental values are aligned with the comparative performance "
     "evaluation of RingZk, zk-SNARK, and zk-STARK."
 )
+
 
