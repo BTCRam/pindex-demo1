@@ -107,7 +107,7 @@ st.info("""
 st.info("System Architecture and Privacy Index Processing Flow")
 
 st.image(
-    "assets/PI flow.png",
+    "assets/PIflow.png",
     caption="Figure: Privacy Index (PIndex) Processing Flow across Blockchain Layers",
     use_column_width=True
 )
@@ -148,6 +148,7 @@ st.caption(
     "Note: Experimental values correspond to controlled smart contract executions "
     "performed on a private blockchain test environment."
 )
+
 
 
 
