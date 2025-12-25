@@ -101,6 +101,23 @@ st.info("""
 - Execution mode: On-chain verification  
 - Privacy primitives: Ring Signature and Zero-Knowledge Proof  
 """)
+# --------------------------------------------------
+# System Flow and Smart Contract Model
+# --------------------------------------------------
+st.info("System Architecture and Privacy Index Processing Flow")
+
+st.image(
+    "assets/PI flow.png",
+    caption="Figure: Privacy Index (PIndex) Processing Flow across Blockchain Layers",
+    use_column_width=True
+)
+
+st.image(
+    "assets/hdd.png",
+    caption="Figure: Smart Contract–Centric Privacy Evaluation Model",
+    use_column_width=True
+)
+
 
 # --------------------------------------------------
 # Results
@@ -131,5 +148,6 @@ st.caption(
     "Note: Experimental values correspond to controlled smart contract executions "
     "performed on a private blockchain test environment."
 )
+
 
 
