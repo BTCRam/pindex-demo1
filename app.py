@@ -61,7 +61,7 @@ st.altair_chart(
 # ---------------------------------------------------
 memory_data = pd.DataFrame({
     "Transactions": transactions,
-    "RingZk": [18, 22, 20, 21, 22, 25, 26, 23],
+    "RingZk": [11, 13, 17, 20, 22, 20, 26, 23],
     "zk-SNARK": [8, 17, 21, 22, 23, 21, 29, 32],
     "zk-STARK": [10, 19, 21, 23, 24, 21, 30, 31]
 })
@@ -80,8 +80,8 @@ st.altair_chart(
 # ---------------------------------------------------
 throughput_data = pd.DataFrame({
     "Transactions": transactions,
-    "RingZk": [500, 500, 500, 500, 500, 500, 500, 500],
-    "zk-SNARK": [450, 400, 300, 200, 250, 180, 260, 80],
+    "RingZk": [500, 490, 475, 480, 500, 465, 500, 500],
+    "zk-SNARK": [450, 400, 300, 200, 250, 180, 260, 280],
     "zk-STARK": [440, 360, 320, 200, 240, 170, 150, 70]
 })
 
@@ -99,8 +99,8 @@ st.altair_chart(
 # ---------------------------------------------------
 anon_time_data = pd.DataFrame({
     "Transactions": transactions,
-    "RingZk": [30, 45, 60, 70, 90, 100, 120, 140],
-    "zk-SNARK": [50, 100, 500, 1000, 2500, 2000, 2800, 3300],
+    "RingZk": [30, 45, 60, 120, 100, 100, 120, 140],
+    "zk-SNARK": [50, 100, 150, 1000, 2500, 2000, 2800, 3300],
     "zk-STARK": [60, 120, 550, 1700, 2000, 1700, 2800, 3700]
 })
 
@@ -128,3 +128,4 @@ st.caption(
     "Note: Experimental values are aligned with the comparative performance "
     "evaluation of RingZk, zk-SNARK, and zk-STARK."
 )
+
