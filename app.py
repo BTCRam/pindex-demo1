@@ -112,6 +112,36 @@ st.altair_chart(
         "Time (ms)"
     )
 )
+st.info("""
+### Experimental Environment
+- Ethereum-compatible private blockchain deployed for controlled experimentation  
+- Smart contracts implemented in Solidity and executed on-chain  
+- Privacy-preserving transactions executed in batched mode  
+- RingZk, zk-SNARK, and zk-STARK verification integrated at contract level  
+- Performance metrics collected during smart contract execution
+""")
+
+st.info("""
+### Performance Evaluation Methodology
+- Comparative analysis of RingZk, zk-SNARK, and zk-STARK frameworks  
+- Metrics evaluated:  
+  • Transaction Turnaround Time  
+  • Memory Consumption  
+  • Throughput (transactions per second)  
+  • Time taken for anonymity-preserving transactions  
+- Identical transaction workloads executed across all schemes  
+- Experiments conducted under uniform network and system conditions
+""")
+
+st.info("""
+### Experimental Objectives
+- To evaluate the computational efficiency of RingZk against zk-based approaches  
+- To assess scalability behavior with increasing transaction volume  
+- To measure anonymity overhead introduced by different zero-knowledge mechanisms  
+- To demonstrate the suitability of RingZk for high-throughput blockchain applications
+""")
+
+
 
 # ---------------------------------------------------
 # Interpretation
@@ -128,5 +158,6 @@ st.caption(
     "Note: Experimental values are aligned with the comparative performance "
     "evaluation of RingZk, zk-SNARK, and zk-STARK."
 )
+
 
 
